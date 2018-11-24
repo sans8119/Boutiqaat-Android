@@ -29,6 +29,6 @@ public interface ProfileVM extends ViewModelInterface {
 
     void storeCameraImageInSDCard(Bitmap bitmap, String email);
 
-    //Bitmap getImageFileFromSDCard(String email);
+    Bitmap getImageFileFromSDCard(String email);
 
 }

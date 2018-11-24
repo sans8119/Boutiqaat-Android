@@ -59,9 +59,9 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.Loca
         }
         Set<Map.Entry<String, CustomerLocation>> mapSet = resultsMap.entrySet();
         Map.Entry<String, CustomerLocation> entry = (Map.Entry<String, CustomerLocation>) mapSet.toArray()[position];
-        Timber.d("bugging:" + resultsMap);
         CustomerLocation customerLoc = resultsMap.get(entry.getKey());
-        customerLoc.locationString = holder.binding.cardViewImageTitleLocation.getContext().getString(R.string.you_are_at) + "\n" + customerLoc.locationString;
+        String prefix=holder.binding.cardViewImageTitleLocation.getContext().getString(R.string.you_are_at);
+        customerLoc.locationString = prefix + "\n" + customerLoc.locationString.replaceAll(prefix,"").trim();
         holder.binding.setCustomerLocation(customerLoc);
         class Listener implements View.OnClickListener {
             @Override

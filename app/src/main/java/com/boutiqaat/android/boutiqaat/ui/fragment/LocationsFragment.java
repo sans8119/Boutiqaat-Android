@@ -25,6 +25,7 @@ import com.boutiqaat.android.boutiqaat.viewmodel.implementation.LocationViewMode
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
@@ -57,6 +58,8 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
             }
             Timber.d("LOcFrag * :" + getCurrentLocation + "    " + locationResult.getLocations().size() +
                     new Utils().getAddress(locationResult.getLocations().get(0).getLatitude(), locationResult.getLocations().get(0).getLongitude(), getActivity()));
+
+
             for (Location location : locationResult.getLocations()) {
                 if (viewModel.updateLocation(location) || getCurrentLocation) {
                     if (getCurrentLocation) {
@@ -74,6 +77,7 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
                         Timber.d("---***>" + userLocation);
                         if (recyclerView.getAdapter() == null)
                             recyclerView.setAdapter(mAdapter);
+
                         if (mAdapter != null) {
                             if (mAdapter.getResultsMap() != null) {
                                 int size = mAdapter.getResultsMap().size();

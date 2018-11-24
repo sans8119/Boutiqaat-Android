@@ -137,7 +137,7 @@ public class ProfileViewModel extends ViewModel implements ProfileVM {
      * @param email
      * @return
      */
-    public Bitmap getImageFileFromSDCard(String email, Context context) {
+    public Bitmap getImageFileFromSDCard(String email) {
         Bitmap bitmap = null;
         File sdCard = Environment.getExternalStorageDirectory();
         File directory = new File(sdCard.getAbsolutePath() + Constants.PROFILE_PIC_DIR);
@@ -146,13 +146,10 @@ public class ProfileViewModel extends ViewModel implements ProfileVM {
         try {
             Timber.d("---getImageFileFromSDCard >000" + bitmap);
             FileInputStream fis = new FileInputStream(imageFile);
-            Toast.makeText(context, "---getImageFileFromSDCard >111" + bitmap, Toast.LENGTH_LONG).show();
             bitmap = BitmapFactory.decodeStream(fis);
-            Toast.makeText(context, "---getImageFileFromSDCard 111>" + bitmap, Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Toast.makeText(context, "---getImageFileFromSDCard >333" + bitmap, Toast.LENGTH_LONG).show();
         return bitmap;
     }
 

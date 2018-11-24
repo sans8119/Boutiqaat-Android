@@ -180,8 +180,8 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
                         .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
 
             }
-        } else if (viewModel.getImageFileFromSDCard(email, getActivity()) != null) {
-            GlideApp.with(this).load(viewModel.getImageFileFromSDCard(email, getActivity()))
+        } else if (viewModel.getImageFileFromSDCard(email) != null) {
+            GlideApp.with(this).load(viewModel.getImageFileFromSDCard(email))
                     .signature(new ObjectKey(System.currentTimeMillis()))
                     .apply(RequestOptions.skipMemoryCacheOf(true))
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
