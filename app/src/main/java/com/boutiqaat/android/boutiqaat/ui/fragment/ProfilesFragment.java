@@ -73,6 +73,12 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
         return binding.getRoot();
     }
 
+    /**
+     * Initializing all the UI components
+     *
+     * @param inflater
+     * @param container
+     */
     public void init(LayoutInflater inflater, ViewGroup container) {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.profile_screen, container, false);
@@ -109,7 +115,6 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
             onActivityResult=false;
             return;
         }
-        Toast.makeText(getActivity(), "onResume" , Toast.LENGTH_LONG).show();
         boolean bool = (prefs.getString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON)).equals(Constants.ANON);
         if (bool) {
             viewModel.setProfileDataOfLoggedInUser(null);
@@ -160,7 +165,6 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
         String email = prefs
                 .getString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON);
         if (url == null) return;
-        Toast.makeText(getActivity(), "setProfileImage 000:url>" + url, Toast.LENGTH_LONG).show();
         if (url.length() > 0) {
             if (url.startsWith("file")) {
                 GlideApp.with((Fragment)this)
@@ -169,15 +173,12 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
                         .apply(RequestOptions.skipMemoryCacheOf(true))
                         .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                         .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                Toast.makeText(getActivity(), "setProfileImage 111:url>" + Uri.parse(url).getPath(), Toast.LENGTH_LONG).show();
-
-            } else {
+                 } else {
                 GlideApp.with((Fragment)this).load(url)
                         .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
                         .apply(RequestOptions.skipMemoryCacheOf(true))
                         .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                         .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                Toast.makeText(getActivity(), "setProfileImage 222:url>" + Uri.parse(url), Toast.LENGTH_LONG).show();
 
             }
         } else if (viewModel.getImageFileFromSDCard(email,getActivity()) != null) {
@@ -186,14 +187,16 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
                     .apply(RequestOptions.skipMemoryCacheOf(true))
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                     .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-            Toast.makeText(getActivity(), "setProfileImage 333" + viewModel.getImageFileFromSDCard(email,getActivity()).getByteCount(), Toast.LENGTH_LONG).show();
-            //Toast.makeText(getActivity(), "***--***" + viewModel.getImageFileFromSDCard(email).getByteCount(), Toast.LENGTH_LONG).show();
-        } else {
+            } else {
             binding.userProfilePhoto.setImageResource(R.drawable.badge_no_image);
-            Toast.makeText(getActivity(), "setProfileImage 444", Toast.LENGTH_LONG).show();
-        }
+               }
     }
 
+    /**
+     * Getting the absolute path of the image selected from Gallery.
+     * @param contentUri
+     * @return
+     */
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
@@ -294,7 +297,6 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
                 String email = binding.inputEmail.getText().toString();
                 String name = binding.inputName.getText().toString();
                 String profilePhotoUrl = viewModel.galleryPicUrl == null ? "" : getRealPathFromURI(viewModel.galleryPicUrl);
-               // Toast.makeText(getActivity(), "Saving image data " + viewModel.galleryPicUrl.toString(), Toast.LENGTH_LONG).show();
 
                 profileData.name = name.length() > 0 ? name : profileData.name;
                 profileData.email = email.length() > 0 ? email : profileData.email;
@@ -304,8 +306,7 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
                 profileData.address = binding.inputLocation.getText().toString().trim();
                 viewModel.setProfileDataOfLoggedInUser(profileData);
                 viewModel.storeProfileDetails(profileData);
-                Toast.makeText(getActivity(), getString(R.string.data_saved), Toast.LENGTH_LONG).show();
-            } else {
+                  } else {
                 String email = binding.inputEmail.getText().toString().trim();
                 if (email.equals(Constants.ANON) || email.length() == 0) {
                     temporarilySaveDataOfAnonUser(email);
@@ -332,7 +333,6 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
     private void temporarilySaveDataOfAnonUser(String email) {
         String name = binding.inputName.getText().toString();
         ProfileData profileData1 = new ProfileData();
-        //ProfileData profileData1 = viewModel.getProfileDataOfAnonimousUser();
         profileData1.profilePhotoUrl = viewModel.galleryPicUrl == null ? "" : viewModel.galleryPicUrl.toString();
         profileData1.gender = String.valueOf(prefs.getInt(Constants.GENDER, 0));
         profileData1.email = email;
@@ -341,8 +341,7 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
         profileData1.location = binding.inputLocation.getText().toString().trim();
 
         viewModel.setProfileDataOfAnonimousInUser(profileData1);
-        Toast.makeText(getActivity(), getString(R.string.login_to_save_data_perm) + profileData1.profilePhotoUrl, Toast.LENGTH_LONG).show();
-    }
+          }
 
 
     /**
@@ -356,56 +355,44 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Toast.makeText(getActivity(), "size 0:" + requestCode, Toast.LENGTH_LONG).show();
-        // if(resultCode  == RESULT_OK) {
-        Timber.d("----onActivityResult----" + requestCode + ", " + resultCode);
+         Timber.d("----onActivityResult----" + requestCode + ", " + resultCode);
         Toast.makeText(getActivity(), "onActivityResult" + data.getData(), Toast.LENGTH_LONG).show();
-        //GlideApp.get(getActivity()).clearMemory();
-        if (requestCode == Constants.REQUEST_IMAGE_CAPTURE) {
+            if (requestCode == Constants.REQUEST_IMAGE_CAPTURE) {
             if (data != null) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                Toast.makeText(getActivity(), "size  1:" + bitmap.getByteCount(), Toast.LENGTH_LONG).show();
-                if (bitmap != null) {
+                  if (bitmap != null) {
                     GlideApp.with((Fragment)this).load(bitmap)
                             .signature(new ObjectKey(System.currentTimeMillis()))
                             .apply(RequestOptions.circleCropTransform())
                             .apply(RequestOptions.skipMemoryCacheOf(true))
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .into(binding.userProfilePhoto);
-                    //binding.userProfilePhoto.setImageBitmap(bitmap);
-                    Toast.makeText(getActivity(), "size  1 A:" + bitmap.getByteCount(), Toast.LENGTH_LONG).show();
-                    String email = prefs
+                      String email = prefs
                             .getString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON);
                     viewModel.storeCameraImageInSDCard(bitmap, email);
                     viewModel.galleryPicUrl = null;
                 }
             }
         } else if (requestCode == Constants.SELECT_IMAGE) {
-            Toast.makeText(getActivity(), "size 4:" + data.getData(), Toast.LENGTH_LONG).show();
-            Bitmap bm = null;
+               Bitmap bm = null;
             if (data != null) {
-                Toast.makeText(getActivity(), "size 5:" + data.getData().getScheme(), Toast.LENGTH_LONG).show();
-                File file = new File(data.getData().getPath());
-                Toast.makeText(getActivity(), "size 5 a:" + data.getData().getPath() + ", " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
-                if (data.getData().getScheme().equals("file")) {
+                     File file = new File(data.getData().getPath());
+                   if (data.getData().getScheme().equals("file")) {
                     GlideApp.with((Fragment)this)
                             .load(data.getData().getPath())
                             .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
                             .apply(RequestOptions.skipMemoryCacheOf(true))
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                    Toast.makeText(getActivity(), "size 5 b:" + new File(data.getData().getPath()).exists(), Toast.LENGTH_LONG).show();
-                } else {
+                      } else {
                     GlideApp.with(this).load(data.getData())
                             .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
                             .apply(RequestOptions.skipMemoryCacheOf(true))
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                    Toast.makeText(getActivity(), "size 5 c:" + data.getData(), Toast.LENGTH_LONG).show();
-                }
+                      }
                 viewModel.galleryPicUrl = data.getData();
-                Toast.makeText(getActivity(), "size 6:" + data.getData(), Toast.LENGTH_LONG).show();
-            }
+                   }
         }
         ((RelativeLayout) binding.userProfilePhoto.getParent()).invalidate();
         onActivityResult=true;

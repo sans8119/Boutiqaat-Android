@@ -65,6 +65,12 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
         return binding.getRoot();
     }
 
+    /**
+     * Initializing all the UI components
+     *
+     * @param inflater
+     * @param container
+     */
     public void init(LayoutInflater inflater, ViewGroup container) {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.settings_fragment, container, false);
@@ -92,6 +98,11 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
 
     public void initObservers() {}
 
+    /**
+     * Handling location update on and off
+     *
+     * @param b
+     */
     private void handleToggleOfLocationSwitch(boolean b) {
         prefs.edit().putBoolean(Constants.LOCATION_ON, b).commit();
         if (b) {
@@ -101,6 +112,10 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
         }
     }
 
+    /**
+     * Language selection ui initialization and setup
+     * @param dataAdapter
+     */
     private void initLanguageSpinner(ArrayAdapter<String> dataAdapter) {
         binding.langSpinner.setAdapter(dataAdapter);
         binding.langSpinner.setSelection(prefs.getInt(Constants.LANGUAGE, Constants.POSTION_ENG), false);
@@ -122,6 +137,11 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
         });
     }
 
+    /**
+     * Observer of ui button click events
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         if (view.getId() == binding.saveBtn.getId()) {
@@ -131,12 +151,18 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
         }
     }
 
+    /**
+     * Lauching sign-up screen.
+     */
     private void handleSigupLinkClick() {
         Intent intent = new Intent(getActivity(), SignupActivity.class);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
+    /**
+     * Sign-in lauch or handling Sign-out
+     */
     private void handleSaveButtonClick() {
         if (binding.saveBtn.getText().equals(getActivity().getString(R.string.sign_out))) {
             prefs.edit().putString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON).

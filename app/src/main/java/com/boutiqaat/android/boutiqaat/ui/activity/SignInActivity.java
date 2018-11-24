@@ -58,7 +58,6 @@ public class SignInActivity extends DaggerAppCompatActivity implements ActivityV
             public void onClick(View v) {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                //startActivityForResult(intent, REQUEST_SIGNUP);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -82,8 +81,6 @@ public class SignInActivity extends DaggerAppCompatActivity implements ActivityV
      * Observer registered for checking if the users information is present in the database.
      */
     public void initObservers() {
-        // viewModel.getProfilesLiveData().removeObservers(this);
-        //if(viewModel.getProfilesLiveData().hasObservers())return;
         viewModel.getProfilesLiveData().observe(this, map -> {
             if (progressDialog != null && progressDialog.isShowing())
                 progressDialog.dismiss();
@@ -125,8 +122,6 @@ public class SignInActivity extends DaggerAppCompatActivity implements ActivityV
             return;
         }
 
-        //binding.btnLogin.setEnabled(false);
-
         progressDialog = new ProgressDialog(SignInActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
@@ -137,19 +132,7 @@ public class SignInActivity extends DaggerAppCompatActivity implements ActivityV
         String password = binding.inputPassword.getText().toString();
         String name = binding.inputName.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
-
         viewModel.getProfileDetails(email);
-
-        /*new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);*/
     }
 
 

@@ -80,22 +80,18 @@ public class SignupActivity extends DaggerAppCompatActivity implements ActivityV
         super.attachBaseContext(new Utils().setLocale(
                 locale,
                 base));
-        Timber.d("attachBaseContext");
     }
 
     @Override
     public void onStop() {
         super.onStop();
         viewModel.getProfilesLiveData().removeObservers(this);
-        Timber.d("----SignUp onStop----");
     }
 
     /**
      * Registering an Observer for checking if the email information provided is present in the database.
      */
     public void initObservers() {
-        // viewModel.getProfilesLiveData().removeObservers(this);
-        //if(viewModel.getProfilesLiveData().hasObservers())return;
         viewModel.getProfilesLiveData().observe(this, map -> {
             if (progressDialog != null && progressDialog.isShowing())
                 progressDialog.dismiss();
@@ -139,8 +135,6 @@ public class SignupActivity extends DaggerAppCompatActivity implements ActivityV
             return;
         }
 
-        // binding.btnSignup.setEnabled(false);
-
         progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
@@ -150,29 +144,10 @@ public class SignupActivity extends DaggerAppCompatActivity implements ActivityV
         String email = binding.inputEmail.getText().toString().trim();
         Timber.d("Calling getProfileDetails");
         viewModel.getProfileDetails(email);
-
-       /* new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000); */
-    }
-
-
-    public void onSignupSuccess() {
-        // binding.btnSignup.setEnabled(true);
-        finish();
     }
 
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
-        //binding.btnSignup.setEnabled(true);
     }
 
     /**

@@ -82,11 +82,9 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
                                 map.put(userLocation.locationString, userLocation);
                                 map.putAll(mAdapter.getResultsMap());
                                 mAdapter.setResultsMap(map);
-                                //mAdapter.getResultsMap().put(userLocation.locationString, userLocation);
                                 if (size == mAdapter.getResultsMap().size())
                                     mAdapter.notifyDataSetChanged();
                                 else
-                                    //mAdapter.notifyItemRangeInserted(0, 1);
                                     mAdapter.notifyDataSetChanged();
                             } else {
                                 LinkedHashMap<String, CustomerLocation> map = new LinkedHashMap<String, CustomerLocation>();
@@ -113,6 +111,12 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
         return binding.getRoot();
     }
 
+    /**
+     * Initializing all the UI components
+     *
+     * @param inflater
+     * @param container
+     */
     public void init(LayoutInflater inflater, ViewGroup container) {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.locations_activity, container, false);
@@ -124,7 +128,6 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
         initObservers();
         viewModel.getLocationDetails(prefs
                 .getString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON));
-        Timber.d("----onCreate----");
     }
 
     @Override
@@ -153,7 +156,6 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
      * Registering observers for recieving location update data obtained from platform ,captured and published by LocationViewModel.
      */
     public void initObservers() {
-        Timber.d("--out--initObservers----");
         viewModel.getLocationsLiveData().observe(this, map -> {
             binding.pb.setVisibility(View.GONE);
             if (Objects.requireNonNull(map).size() == 0) {
@@ -188,7 +190,7 @@ public class LocationsFragment extends DaggerFragment implements LocationsAdapte
             viewModel.setLocationCallback(mLocationCallback);
             viewModel.startLocationUpdates(1000, 1000);
             getCurrentLocation = true;
-            Timber.d("1 getCurrentLocation:" + getCurrentLocation);
+            Timber.d("getCurrentLocation:" + getCurrentLocation);
         }
     }
 }

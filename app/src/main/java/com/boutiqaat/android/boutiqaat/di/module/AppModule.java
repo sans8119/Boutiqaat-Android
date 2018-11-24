@@ -39,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
         ActivityBinderModule.class,
         ViewModelModule.class}
 )
-public final class AppModule {
+public class AppModule implements AppModuleInterface {
 
     private static String BASE_URL = "https://api.instagram.com/v1/";
 

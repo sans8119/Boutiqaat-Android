@@ -62,7 +62,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="dont_have_account">Dont have an account? Sign up</string>
 
-    <string name="no_connection">Please connect to internet and try again</string>
+    <string name="no_connection">Please connect to internet.This screen needs internet.</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

@@ -60,7 +60,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="dont_have_account">Vous n\'avez pas de compte? S\'inscrire</string>
 
-    <string name="no_connection">Veuillez vous connecter à Internet et réessayer.</string>
+    <string name="no_connection">Veuillez vous connecter à Internet.Cet écran a besoin d\'Internet</string>
 
 
     <string-array name="gender_arrays">

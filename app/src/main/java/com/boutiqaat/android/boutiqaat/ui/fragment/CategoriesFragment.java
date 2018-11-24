@@ -58,10 +58,16 @@ public class CategoriesFragment extends DaggerFragment implements ResultsAdapter
     public void showDialog(){
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.no_connection)
-                .setPositiveButton(R.string.button_allow, (dialog, button) -> dialog.dismiss())
+                .setPositiveButton(R.string.ok, (dialog, button) -> dialog.dismiss())
                 .show();
     }
 
+    /**
+     * Initializing all the UI components
+     *
+     * @param inflater
+     * @param container
+     */
     public void init(LayoutInflater inflater, ViewGroup container) {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.catogories_activity, container, false);

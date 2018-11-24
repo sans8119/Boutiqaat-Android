@@ -70,7 +70,6 @@ public class MainActivity extends DaggerAppCompatActivity implements AHBottomNav
         super.attachBaseContext(new Utils().setLocale(
                 locale,
                 base));
-        Timber.d("attachBaseContext");
     }
 
     @Override
@@ -85,14 +84,11 @@ public class MainActivity extends DaggerAppCompatActivity implements AHBottomNav
         addBottomNavigationItems();
         utils = new Utils();
         if (prefs.getBoolean(Constants.REFRESH, false)) {
-            Timber.d("------11111-------");
             binding.bottomNavigation.setCurrentItem(Constants.POSTION_SETTINGS);
             prefs.edit().putBoolean(Constants.REFRESH, false).commit();
         } else {
             binding.bottomNavigation.setCurrentItem(Constants.POSTION_CATOGORIES);
-            Timber.d("------22222-------");
         }
-        //setUpBottomTabs();
         if (!prefs.contains(Constants.LOCATION_ON)) {
             prefs.edit().putBoolean(Constants.LOCATION_ON, true).commit();
         }
