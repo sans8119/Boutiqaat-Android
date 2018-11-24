@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Boutiqaat</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="bellus">Bellus</string>
+    <string name="your_beauty_our_passion">Your Beauty,Our Passion.</string>
+
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="get_current_location">Trigger Location Update</string>
+    <string name="catogories">Catogories</string>
+    <string name="profiles">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="locations">My Locations</string>
+
+    <string name="permission__rationale">These permissions are needed for the location updates and Camera to be captured.</string>
+    <string name="button_allow">Allow</string>
+    <string name="button_deny">Deny</string>
+    <string name="ok">OK</string>
+    <string name="profile">Profile</string>
+
+    <string name="permission_call_neverask">If Location permissions are not accepted then Location updates will not be shown and Location tab will not work.
+    If camera permissions are not accepted then in profile page Camera can not be used.</string>
+    <string name="permission_call_denied">Location updates will not be shown. Location tab will not work.</string>
+    <string name="device_not_supported">Device does not support Location update feature. Hence Location tab will not be functional.</string>
+
+    <string name="you_are_at">You are at</string>
+    <string name="time">You are at</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="phone">Phone</string>
+    <string name="location">Enter Address</string>
+
+    <string name="save">Update</string>
+
+    <string name="choose_pic_from">Choose Picture from...</string>
+    <string name="choose_from_camera">Camera</string>
+    <string name="choose_from_gallery">Gallery</string>
+    <string name="select_file">Select File</string>
+    <string name="login_to_save_data_perm">You have not yet signed in. Data will only be saved for this session. Please sign in to save data permanently. </string>
+    <string name="data_saved">Data saved </string>
+
+    <string name="gps_network_not_enabled">GPS network not enabled</string>
+    <string name="open_location_settings">Open location settings</string>
+    <string name="Cancel">Cancel</string>
+
+
+    <string name="settings_save_location_info">Save location info</string>
+    <string name="email_already_in_use">Please use a different email. This email is already in use</string>
+    <string name="user_pwd_wrong">Invalid Login details</string>
+
+    <string name="address_not_available">Current location not available.Please enter location.</string>
+
+    <string-array name="language_arrays">
+        <item>Arabic</item>
+        <item>English</item>
+        <item>Fench</item>
+    </string-array>
+    <string name="select_lang">Select language</string>
+
+    <string name="sign_out">Sign Out</string>
+    <string name="dont_have_account">Dont have an account? Sign up</string>
+
+    <string name="no_connection">Please connect to internet and try again</string>
+
+    <string-array name="gender_arrays">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+</resources>

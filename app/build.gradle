@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+project.ext {
+    supportLibVersion = "27.0.2"
+    compileVersion = 27
+    minSupportedVersion = 23
+    daggerVersion = "2.13"
+    rxJavaVersion = "2.1.0"
+    rxAndroidVersion = "2.0.1"
+    timberVersion = "4.7.1"
+    lifecycleVersion = "1.1.0"
+    retrofitVersion = "2.3.0"
+    gsonVersion = "2.8.2"
+    roomVersion = "1.0.0"
+    glideVersion = "4.6.1"
+    permissionDispatcherVersion = "3.2.0"
+   // work = "1.0.0-alpha10"
+}
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.boutiqaat.android.boutiqaat"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:design:$project.supportLibVersion"
+
+    //noinspection GradleDependency
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.android.support:recyclerview-v7:$project.supportLibVersion"
+    implementation "android.arch.lifecycle:runtime:$project.lifecycleVersion"
+    implementation "android.arch.lifecycle:extensions:$project.lifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$project.lifecycleVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$project.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$project.roomVersion"
+    implementation "android.arch.persistence.room:runtime:$project.roomVersion"
+    implementation "com.google.code.gson:gson:$project.gsonVersion"
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation "com.jakewharton.timber:timber:$project.timberVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
+    implementation "com.github.bumptech.glide:glide:$project.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$project.glideVersion"
+
+    //noinspection GradleDependency
+    implementation "com.android.support:cardview-v7:$project.supportLibVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation 'com.aurelhubert:ahbottomnavigation:2.0.4'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.7.22'
+    androidTestImplementation 'org.mockito:mockito-android:2.7.22'
+    implementation "com.github.hotchemi:permissionsdispatcher:$permissionDispatcherVersion"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$permissionDispatcherVersion"
+
+    //implementation "android.arch.work:work-runtime:$project.work"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+configurations.all { resolutionStrategy.force 'android.arch.persistence.room:runtime:1.0.0' }

@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Boutiqaat</string>
+    <string name="action_settings">Réglages</string>
+
+    <string name="bellus">Bellus</string>
+    <string name="your_beauty_our_passion">Votre beauté, notre passion</string>
+
+    <string name="list">liste</string>
+    <string name="grid">la grille</string>
+    <string name="get_current_location">obtenir l'emplacement</string>
+    <string name="catogories">Les catégories</string>
+    <string name="profiles">Profil</string>
+    <string name="settings">Réglages</string>
+    <string name="locations">Mes emplacements</string>
+
+    <string name="permission__rationale">Ces autorisations sont nécessaires pour que les mises à jour d\'emplacement et la caméra soient capturées.</string>
+    <string name="button_allow">Permettre</string>
+    <string name="button_deny">Nier</string>
+    <string name="ok">D\'accord</string>
+    <string name="profile">Profil</string>
+
+    <string name="permission_call_neverask">Si les autorisations d\'emplacement ne sont pas acceptées, les mises à jour d\'emplacement ne seront pas affichées et l\'onglet d\'emplacement ne fonctionnera pas.
+    Si les autorisations de la caméra ne sont pas acceptées, alors dans la page de profil, la caméra ne peut pas être utilisée.</string>
+    <string name="permission_call_denied">Location updates will not be shown. Location tab will not work.</string>
+    <string name="device_not_supported">L\'appareil ne prend pas en charge la fonctionnalité de mise à jour d\'emplacement. Par conséquent, l\'onglet Emplacement ne sera pas fonctionnel.</string>
+
+    <string name="you_are_at">Tu es a</string>
+    <string name="time">Temps</string>
+    <string name="name">prénom</string>
+    <string name="email">Email</string>
+    <string name="gender">Le sexe</string>
+    <string name="phone">Phone</string>
+    <string name="location">Entrer l'adresse</string>
+
+    <string name="save">Mettre à jour</string>
+
+    <string name="choose_pic_from">Choisissez une image parmi...</string>
+    <string name="choose_from_camera">Camera</string>
+    <string name="choose_from_gallery">Gallery</string>
+    <string name="select_file">Select File</string>
+    <string name="login_to_save_data_perm">Vous n\'êtes pas encore connecté. Les données ne seront enregistrées que pour cette session. Veuillez vous connecter pour sauvegarder les données en permanence</string>
+    <string name="data_saved">Données sauvegardées</string>
+
+    <string name="gps_network_not_enabled">GPS réseau non activé</string>
+    <string name="open_location_settings">Ouvrir les paramètres de localisation</string>
+    <string name="Cancel">Annuler</string>
+
+    <string name="settings_save_location_info">Enregistrer les informations de localisation</string>
+    <string name="email_already_in_use">Veuillez utiliser un email différent. Cet e-mail est déjà utilisée</string>
+    <string name="user_pwd_wrong">Invalide Login details</string>
+    <string name="address_not_available">Emplacement actuel non disponible.Veuillez entrer l'emplacement</string>
+
+    <string-array name="language_arrays">
+        <item>Arabic</item>
+        <item>English</item>
+        <item>Fench</item>
+    </string-array>
+    <string name="select_lang">Choisir la langue</string>
+
+    <string name="sign_out">Sign Out</string>
+    <string name="dont_have_account">Vous n\'avez pas de compte? S\'inscrire</string>
+
+    <string name="no_connection">Veuillez vous connecter à Internet et réessayer.</string>
+
+
+    <string-array name="gender_arrays">
+        <item>Mâle</item>
+        <item>Femelle</item>
+    </string-array>
+
+</resources>
