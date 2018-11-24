@@ -34,7 +34,6 @@ import com.boutiqaat.android.boutiqaat.utils.Constants;
 import com.boutiqaat.android.boutiqaat.utils.GlideApp;
 import com.boutiqaat.android.boutiqaat.utils.Utils;
 import com.boutiqaat.android.boutiqaat.viewmodel.implementation.ProfileViewModel;
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.MediaStoreSignature;
@@ -55,7 +54,7 @@ import timber.log.Timber;
  * has not logged in(Anonymous user) then his information updates will be saved on clicking Update button until the app is active
  * in the foreground or background.
  */
-public class ProfilesFragment extends DaggerFragment implements View.OnClickListener,FragmentView {
+public class ProfilesFragment extends DaggerFragment implements View.OnClickListener, FragmentView {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private ProfileScreenBinding binding;
@@ -105,14 +104,14 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
         binding.userProfilePhoto.setOnClickListener(this);
         binding.saveBtn.setOnClickListener(this);
         utils = new Utils();
-        GlideApp.with((Fragment)this).clear( binding.userProfilePhoto);
+        GlideApp.with((Fragment) this).clear(binding.userProfilePhoto);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(onActivityResult) {
-            onActivityResult=false;
+        if (onActivityResult) {
+            onActivityResult = false;
             return;
         }
         boolean bool = (prefs.getString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON)).equals(Constants.ANON);
@@ -167,38 +166,39 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
         if (url == null) return;
         if (url.length() > 0) {
             if (url.startsWith("file")) {
-                GlideApp.with((Fragment)this)
+                GlideApp.with((Fragment) this)
                         .load(new File(Uri.parse(url).getPath()))
-                        .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
+                        .signature(new MediaStoreSignature("", System.currentTimeMillis(), 0))
                         .apply(RequestOptions.skipMemoryCacheOf(true))
                         .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                         .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                 } else {
-                GlideApp.with((Fragment)this).load(url)
-                        .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
+            } else {
+                GlideApp.with((Fragment) this).load(url)
+                        .signature(new MediaStoreSignature("", System.currentTimeMillis(), 0))
                         .apply(RequestOptions.skipMemoryCacheOf(true))
                         .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                         .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
 
             }
-        } else if (viewModel.getImageFileFromSDCard(email,getActivity()) != null) {
-            GlideApp.with(this).load(viewModel.getImageFileFromSDCard(email,getActivity()))
+        } else if (viewModel.getImageFileFromSDCard(email, getActivity()) != null) {
+            GlideApp.with(this).load(viewModel.getImageFileFromSDCard(email, getActivity()))
                     .signature(new ObjectKey(System.currentTimeMillis()))
                     .apply(RequestOptions.skipMemoryCacheOf(true))
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                     .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-            } else {
+        } else {
             binding.userProfilePhoto.setImageResource(R.drawable.badge_no_image);
-               }
+        }
     }
 
     /**
      * Getting the absolute path of the image selected from Gallery.
+     *
      * @param contentUri
      * @return
      */
     private String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Images.Media.DATA };
+        String[] proj = {MediaStore.Images.Media.DATA};
         Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
         if (cursor == null) {
             return contentUri.getPath();
@@ -306,7 +306,8 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
                 profileData.address = binding.inputLocation.getText().toString().trim();
                 viewModel.setProfileDataOfLoggedInUser(profileData);
                 viewModel.storeProfileDetails(profileData);
-                  } else {
+                Toast.makeText(getActivity(),getResources().getString(R.string.data_saved),Toast.LENGTH_LONG).show();
+            } else {
                 String email = binding.inputEmail.getText().toString().trim();
                 if (email.equals(Constants.ANON) || email.length() == 0) {
                     temporarilySaveDataOfAnonUser(email);
@@ -339,9 +340,10 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
         profileData1.name = name;
         profileData1.phone = binding.inputPhone.getText().toString().trim();
         profileData1.location = binding.inputLocation.getText().toString().trim();
-
         viewModel.setProfileDataOfAnonimousInUser(profileData1);
-          }
+        Toast.makeText(getActivity(),getResources().getString(R.string.login_to_save_data_perm),Toast.LENGTH_LONG).show();
+
+    }
 
 
     /**
@@ -355,47 +357,46 @@ public class ProfilesFragment extends DaggerFragment implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-         Timber.d("----onActivityResult----" + requestCode + ", " + resultCode);
-        Toast.makeText(getActivity(), "onActivityResult" + data.getData(), Toast.LENGTH_LONG).show();
-            if (requestCode == Constants.REQUEST_IMAGE_CAPTURE) {
+        Timber.d("----onActivityResult----" + requestCode + ", " + resultCode);
+        if (requestCode == Constants.REQUEST_IMAGE_CAPTURE) {
             if (data != null) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                  if (bitmap != null) {
-                    GlideApp.with((Fragment)this).load(bitmap)
+                if (bitmap != null) {
+                    GlideApp.with((Fragment) this).load(bitmap)
                             .signature(new ObjectKey(System.currentTimeMillis()))
                             .apply(RequestOptions.circleCropTransform())
                             .apply(RequestOptions.skipMemoryCacheOf(true))
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .into(binding.userProfilePhoto);
-                      String email = prefs
+                    String email = prefs
                             .getString(Constants.LOGGED_IN_USER_EMAIL, Constants.ANON);
                     viewModel.storeCameraImageInSDCard(bitmap, email);
                     viewModel.galleryPicUrl = null;
                 }
             }
         } else if (requestCode == Constants.SELECT_IMAGE) {
-               Bitmap bm = null;
+            Bitmap bm = null;
             if (data != null) {
-                     File file = new File(data.getData().getPath());
-                   if (data.getData().getScheme().equals("file")) {
-                    GlideApp.with((Fragment)this)
+                File file = new File(data.getData().getPath());
+                if (data.getData().getScheme().equals("file")) {
+                    GlideApp.with((Fragment) this)
                             .load(data.getData().getPath())
-                            .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
+                            .signature(new MediaStoreSignature("", System.currentTimeMillis(), 0))
                             .apply(RequestOptions.skipMemoryCacheOf(true))
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                      } else {
+                } else {
                     GlideApp.with(this).load(data.getData())
-                            .signature(new MediaStoreSignature("",System.currentTimeMillis(),0))
+                            .signature(new MediaStoreSignature("", System.currentTimeMillis(), 0))
                             .apply(RequestOptions.skipMemoryCacheOf(true))
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .apply(RequestOptions.circleCropTransform()).into(binding.userProfilePhoto);
-                      }
+                }
                 viewModel.galleryPicUrl = data.getData();
-                   }
+            }
         }
         ((RelativeLayout) binding.userProfilePhoto.getParent()).invalidate();
-        onActivityResult=true;
+        onActivityResult = true;
     }
 
 }

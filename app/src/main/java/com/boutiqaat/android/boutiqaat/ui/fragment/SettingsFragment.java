@@ -36,7 +36,7 @@ import timber.log.Timber;
  * From here he can sign-up, sign-in or sign-out. Sign-out button will only be visible when the user has signed-in.
  * Sing-up and Sign-in buttons will only be visible when the user has not yet signed in.
  */
-public class SettingsFragment extends DaggerFragment implements View.OnClickListener,FragmentView {
+public class SettingsFragment extends DaggerFragment implements View.OnClickListener, FragmentView {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private SettingsBinding binding;
@@ -96,7 +96,8 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
         });
     }
 
-    public void initObservers() {}
+    public void initObservers() {
+    }
 
     /**
      * Handling location update on and off
@@ -114,6 +115,7 @@ public class SettingsFragment extends DaggerFragment implements View.OnClickList
 
     /**
      * Language selection ui initialization and setup
+     *
      * @param dataAdapter
      */
     private void initLanguageSpinner(ArrayAdapter<String> dataAdapter) {

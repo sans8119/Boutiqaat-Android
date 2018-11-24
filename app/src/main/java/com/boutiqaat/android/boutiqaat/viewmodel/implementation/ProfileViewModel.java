@@ -113,8 +113,8 @@ public class ProfileViewModel extends ViewModel implements ProfileVM {
      */
     public void storeCameraImageInSDCard(Bitmap bitmap, String email) {
         File sdCard = Environment.getExternalStorageDirectory();
-        File directory = new File (sdCard.getAbsolutePath() + Constants.PROFILE_PIC_DIR);
-        if(!directory.exists()) directory.mkdir();
+        File directory = new File(sdCard.getAbsolutePath() + Constants.PROFILE_PIC_DIR);
+        if (!directory.exists()) directory.mkdir();
         directory.setExecutable(true);
         File outputFile = new File(directory, currentSavedCameraPicName(email));
         if (!outputFile.exists())
@@ -137,21 +137,22 @@ public class ProfileViewModel extends ViewModel implements ProfileVM {
      * @param email
      * @return
      */
-    public Bitmap getImageFileFromSDCard(String email,Context context) {
+    public Bitmap getImageFileFromSDCard(String email, Context context) {
         Bitmap bitmap = null;
         File sdCard = Environment.getExternalStorageDirectory();
-        File directory = new File (sdCard.getAbsolutePath() + Constants.PROFILE_PIC_DIR);
+        File directory = new File(sdCard.getAbsolutePath() + Constants.PROFILE_PIC_DIR);
         File imageFile = new File(directory, currentSavedCameraPicName(email));
         //File imageFile = new File(Environment.getExternalStorageDirectory() + currentSavedCameraPicName(email));
-        try {Timber.d("---getImageFileFromSDCard >000"+bitmap);
+        try {
+            Timber.d("---getImageFileFromSDCard >000" + bitmap);
             FileInputStream fis = new FileInputStream(imageFile);
-            Toast.makeText(context, "---getImageFileFromSDCard >111"+bitmap,Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "---getImageFileFromSDCard >111" + bitmap, Toast.LENGTH_LONG).show();
             bitmap = BitmapFactory.decodeStream(fis);
-            Toast.makeText(context, "---getImageFileFromSDCard 111>"+bitmap,Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "---getImageFileFromSDCard 111>" + bitmap, Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Toast.makeText(context, "---getImageFileFromSDCard >333"+bitmap,Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "---getImageFileFromSDCard >333" + bitmap, Toast.LENGTH_LONG).show();
         return bitmap;
     }
 

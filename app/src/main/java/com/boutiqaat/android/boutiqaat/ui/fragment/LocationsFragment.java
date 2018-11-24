@@ -38,7 +38,7 @@ import timber.log.Timber;
  * for every 500 m movement from current position ; users current location update can also be shown instantaneously when 'Trigger Location Update'
  * button is clicked.
  */
-public class LocationsFragment extends DaggerFragment implements LocationsAdapter.AdapterListener, View.OnClickListener,FragmentView {
+public class LocationsFragment extends DaggerFragment implements LocationsAdapter.AdapterListener, View.OnClickListener, FragmentView {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private LocationsBinding binding;

@@ -40,7 +40,6 @@ public class Utils {
                 add = add + "\n" + obj.getAdminArea();
                 add = add + "\n" + obj.getSubAdminArea();
                 add = add + "\n" + obj.getLocality();
-                add = add + "\n" + obj.getSubThoroughfare();
                 add = add + "\n" + "Time: " + new SimpleDateFormat(Constants.DATE_FORMAT).format(new java.util.Date());
             }
             Timber.v("Address" + add);

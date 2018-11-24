@@ -51,7 +51,7 @@ import timber.log.Timber;
  * This class is the parent container which houses the tabs for showing catogories, Location updates, profile information and Settings.
  */
 @RuntimePermissions
-public class MainActivity extends DaggerAppCompatActivity implements AHBottomNavigation.OnTabSelectedListener,ActivityView {
+public class MainActivity extends DaggerAppCompatActivity implements AHBottomNavigation.OnTabSelectedListener, ActivityView {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     @Inject
     ViewModelProvider.Factory viewModelFactory;

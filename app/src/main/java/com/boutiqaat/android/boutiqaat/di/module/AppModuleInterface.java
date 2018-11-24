@@ -14,10 +14,16 @@ import retrofit2.Retrofit;
 
 public interface AppModuleInterface {
     Executor provideExecutor();
+
     Gson provideGson();
+
     Retrofit provideRetrofit(Gson gson);
+
     WebService provideWebservice(Retrofit restAdapter);
+
     ResultsDb provideDatabase(Application application);
+
     ResultsDao provideUserDao(ResultsDb database);
+
     Repository provideDataRepository(WebService webservice, ResultsDao resultsDao, Executor executor, Application application);
 }

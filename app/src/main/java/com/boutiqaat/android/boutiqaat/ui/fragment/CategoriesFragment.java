@@ -34,7 +34,7 @@ import timber.log.Timber;
 /**
  * This is the user interface class for showing 20 images downloaded from the instagram servers in the internet.
  */
-public class CategoriesFragment extends DaggerFragment implements ResultsAdapter.AdapterListener,FragmentView {
+public class CategoriesFragment extends DaggerFragment implements ResultsAdapter.AdapterListener, FragmentView {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -49,13 +49,13 @@ public class CategoriesFragment extends DaggerFragment implements ResultsAdapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         init(inflater, container);
-        if(!new Utils().checkConnection(getActivity())){
+        if (!new Utils().checkConnection(getActivity())) {
             showDialog();
         }
         return binding.getRoot();
     }
 
-    public void showDialog(){
+    public void showDialog() {
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.no_connection)
                 .setPositiveButton(R.string.ok, (dialog, button) -> dialog.dismiss())

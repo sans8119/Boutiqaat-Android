@@ -1,13 +1,13 @@
 package com.boutiqaat.android.boutiqaat.di.module;
 
 
-import com.boutiqaat.android.boutiqaat.ui.fragment.CategoriesFragment;
-import com.boutiqaat.android.boutiqaat.ui.fragment.LocationsFragment;
 import com.boutiqaat.android.boutiqaat.ui.activity.MainActivity;
-import com.boutiqaat.android.boutiqaat.ui.fragment.ProfilesFragment;
-import com.boutiqaat.android.boutiqaat.ui.fragment.SettingsFragment;
 import com.boutiqaat.android.boutiqaat.ui.activity.SignInActivity;
 import com.boutiqaat.android.boutiqaat.ui.activity.SignupActivity;
+import com.boutiqaat.android.boutiqaat.ui.fragment.CategoriesFragment;
+import com.boutiqaat.android.boutiqaat.ui.fragment.LocationsFragment;
+import com.boutiqaat.android.boutiqaat.ui.fragment.ProfilesFragment;
+import com.boutiqaat.android.boutiqaat.ui.fragment.SettingsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
