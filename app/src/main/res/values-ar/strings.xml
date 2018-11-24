@@ -13,16 +13,16 @@
     <string name="settings">الإعدادات</string>
     <string name="locations">مواقعي</string>
 
-    <string name="permission__rationale">تحديثات الموقع وتحتاج أذوناتالكاميرا</string>
+    <string name="permission__rationale">هناك حاجة إلى هذه الأذونات للتحديثات الموقع والكاميرا لالتقاطها</string>
     <string name="button_allow">السماح</string>
     <string name="button_deny">أنكر</string>
     <string name="ok">حسنا</string>
     <string name="profile">الملف الشخصي</string>
 
-    <string name="permission_call_neverask">إذا لم يتم قبول أذونات الموقع ، فلن يتم عرض تحديثات الموقع ولن تعمل علامة التبويب "الموقع". الشخصي لا يمكن استخدام الكاميرا.
-    إذا لم يتم قبول أذونات الكاميرا ، في صفحة الملف </string>
-    <string name="permission_call_denied">لن يتم عرض تحديثات الموقع. علامة التبويب الموقعلن تعمل.</string>
-    <string name="device_not_supported">لا يدعم الجهاز ميزة تحديث الموقع. ومن ثم لن تكون. علامة التبويب "الموقع" فعالة</string>
+    <string name="permission_call_neverask"> إذا لم يتم قبول أذونات الموقع ، فلن يتم عرض تحديثات الموقع ولن تعمل علامة التبويب "الموقع".
+    إذا لم يتم قبول أذونات الكاميرا ، في صفحة الملف الشخصي لا يمكن استخدام الكاميرا </string>
+    <string name="permission_call_denied">لن يتم عرض تحديثات الموقع. علامة التبويب الموقع لن تعمل</string>
+    <string name="device_not_supported">لا يدعم الجهاز ميزة تحديث الموقع. ومن ثم لن تكون علامة التبويب "الموقع" فعالة</string>
 
     <string name="you_are_at">انت عند</string>
     <string name="time">زمن</string>
@@ -46,7 +46,7 @@
     <string name="Cancel">إلغاء</string>
 
     <string name="settings_save_location_info">احفظ معلومات الموقع</string>
-    <string name="email_already_in_use">يرجى استخدام بريد إلكتروني مختلف. هذا البريداستخدم من قبل</string>
+    <string name="email_already_in_use">يرجى استخدام بريد إلكتروني مختلف. هذا البريد استخدم من قبل</string>
     <string name="user_pwd_wrong">غير صالحة Login </string>
     <string name="address_not_available">الموقع الحالي غير متاح. الرجاء إدخال الموقع</string>
 
@@ -60,7 +60,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="dont_have_account"> لا تملك حساب? Sign up</string>
 
-    <string name="no_connection">رجى الاتصال بالإنترنت. هذه الشاشة تحتاج إلى الإنترنت.</string>
+    <string name="no_connection">يرجى الاتصال بالإنترنت. هذه الشاشة تحتاج إلى الإنترنت</string>
 
     <string-array name="gender_arrays">
         <item>الذكر</item>
