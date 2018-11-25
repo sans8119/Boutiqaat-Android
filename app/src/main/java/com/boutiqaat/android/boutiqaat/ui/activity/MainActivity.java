@@ -250,7 +250,6 @@ public class MainActivity extends DaggerAppCompatActivity implements AHBottomNav
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             super.onActivityResult(requestCode, resultCode, data);
-            Toast.makeText(this, "size 1:" + data, Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
         }
     }
