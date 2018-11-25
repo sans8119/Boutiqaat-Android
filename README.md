@@ -13,6 +13,12 @@ __*The application can handle multiple sign-ups*__. When ever a user signs-in wi
 
 **MVVM** is predominently used for architecture. Some of the latest architectural components introduces by Android platform like - Room, LiveData etc are used in sync with android data binding. Usage of RxAndroid, LiveData and Data binding makes for a reactive architecture. This is done in order to reduce response times for seeing a screen. Dagger is used for dependency injection and maintaining of various objects. 
 
+### BUILD FILE FOR TESTING
+https://github.com/sans8119/Boutiqaat-Android/tree/feature/case_study/app/build/outputs/apk/debug
+
+### TESTING REPORTS
+https://github.com/sans8119/Boutiqaat-Android/tree/feature/case_study/app/build/reports/tests/testDebugUnitTest
+
 ### EXTERNAL LIBRARIES used:
 
 1)	__Retrofit__ : https://square.github.io/retrofit/ This is a networking library
@@ -23,3 +29,8 @@ __*The application can handle multiple sign-ups*__. When ever a user signs-in wi
 6)	__Glide__: https://github.com/bumptech/glide  Image manipulation library
 7)	__PermissionDispatcher__: https://github.com/permissions-dispatcher/PermissionsDispatcher For runtime android permissions
 
+### BUILD FILE FOR TESTING
+https://github.com/sans8119/Boutiqaat-Android/tree/feature/case_study/app/build/outputs/apk/debug
+
+### TEST REPORTS
+https://github.com/sans8119/Boutiqaat-Android/tree/feature/case_study/app/build/reports/tests/testDebugUnitTest
